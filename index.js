@@ -37,28 +37,24 @@ const pizza = [
     }
   ];
 
-  const pizzaImpar =[];
-  const pizzaMenos600 = [];
-  const pizzaNombres = [];
-  const pizzaPrecios = [];
-  const nombreMasPrecio = [];
+    const input = document.querySelector(".inputNumber");
+    const button = document.querySelector(".inputButton");
+    const h2 = document.querySelector(".h2");
+    const h4 = document.querySelector(".h4");
 
- 
 
-  (pizza.forEach(pizzas=> {
-    if(pizzas.id%2===1){
-        pizzaImpar.push(pizzas.nombre);
+    button.addEventListener('click',() => {
+    if(input.value <= pizza.length){
+    const valores = pizza.filter(item => item.id == input.value).map(itemDos => ({
+        nombre:itemDos.nombre,
+        id:itemDos.id
+    }))
+    
+
+    h2.innerHTML = valores[0].id;
+    h4.innerHTML = valores[0].nombre;
     }
-    if(pizzas.precio<600){
-        pizzaMenos600.push(pizzas.nombre);
-    }
-    pizzaNombres.push(pizzas.nombre);
-    pizzaPrecios.push(pizzas.precio)
-    nombreMasPrecio.push("Nombre:"+pizzas.nombre + " " +"Precio:"+pizzas.precio + "  ");
-  }))
+    else alert("id incorrecto")
+})
 
-  console.log(`las pizzas con un id impar son: ${pizzaImpar}`);
-  console.log(`las pizzas que valen menos de 600$ son: ${pizzaMenos600}`);
-  console.log(`el nombre de todas las pizzas es: ${pizzaNombres}`);
-  console.log(`el precio de todas las pizzas es: ${pizzaPrecios}`);
-  console.log(`el nombre de la pizza y su precio es: ${nombreMasPrecio}`);
+
